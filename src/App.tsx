@@ -1,3 +1,4 @@
+import "./App.css";
 import { useTrends } from "./hooks/useTrends";
 import { useGacha } from "./hooks/useGacha";
 

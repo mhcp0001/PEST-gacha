@@ -1,0 +1,149 @@
+:root {
+  --bg-primary: #0b0e17;
+  --bg-card: #141824;
+  --color-mega: #8b5cf6;
+  --color-middle: #22d3ee;
+  --color-micro: #4ade80;
+  --color-all: #e2e8f0;
+  --text-primary: #f1f5f9;
+  --text-muted: #64748b;
+  --ring-color: var(--color-all);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+}
+
+/* Orb Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orb-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb-container[data-category="MEGA"] {
+  --ring-color: var(--color-mega);
+}
+.orb-container[data-category="MIDDLE"] {
+  --ring-color: var(--color-middle);
+}
+.orb-container[data-category="MICRO"] {
+  --ring-color: var(--color-micro);
+}
+.orb-container[data-category="ALL"] {
+  --ring-color: var(--color-all);
+}
+
+.orb-ring {
+  position: absolute;
+  border: 2px solid var(--ring-color);
+  border-radius: 50%;
+  box-shadow: 0 0 15px color-mix(in srgb, var(--ring-color) 30%, transparent),
+    inset 0 0 15px color-mix(in srgb, var(--ring-color) 10%, transparent);
+  animation: spin 12s linear infinite;
+  transition: border-color 0.5s, box-shadow 0.5s;
+}
+
+.orb-ring--middle {
+  animation-duration: 18s;
+  animation-direction: reverse;
+}
+
+.orb-ring--inner {
+  animation-duration: 25s;
+}
+
+.orb-ring--spinning {
+  animation-duration: 0.8s;
+}
+
+.orb-ring--middle.orb-ring--spinning {
+  animation-duration: 0.6s;
+}
+
+.orb-ring--inner.orb-ring--spinning {
+  animation-duration: 0.4s;
+}
+
+.orb-ring--outer {
+  width: clamp(220px, 60vw, 320px);
+  height: clamp(220px, 60vw, 320px);
+}
+
+.orb-ring--middle {
+  width: clamp(170px, 47vw, 260px);
+  height: clamp(170px, 47vw, 260px);
+}
+
+.orb-ring--inner {
+  width: clamp(120px, 34vw, 200px);
+  height: clamp(120px, 34vw, 200px);
+}
+
+.orb-core {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.orb-icon {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  line-height: 1;
+}
+
+/* Overlay & Result Card */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+
+.overlay--visible {
+  opacity: 1;
+}
+
+.result-card {
+  background-color: var(--bg-card);
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  transform: translateY(100%);
+  transition: transform 400ms ease-out;
+}
+
+.overlay--visible .result-card {
+  transform: translateY(0);
+}
+
+.result-card[data-category="MEGA"] {
+  border: 1px solid var(--color-mega);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-mega) 25%, transparent);
+}
+
+.result-card[data-category="MIDDLE"] {
+  border: 1px solid var(--color-middle);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-middle) 25%, transparent);
+}
+
+.result-card[data-category="MICRO"] {
+  border: 1px solid var(--color-micro);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-micro) 25%, transparent);
+}
