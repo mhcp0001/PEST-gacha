@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Trend Gacha – smoke tests", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/trend-gacha/");
+    await page.goto("/PEST-gacha/");
   });
 
   test("ページが表示され、タイトルが見える", async ({ page }) => {
